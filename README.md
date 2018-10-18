@@ -8,7 +8,7 @@ the future deployment bash script will just copy the files to the system and rep
 
 the initial ini file can be generated like 
 
-  ./make_ini.sh > ini
+  '''./make_ini.sh > ini'''
 
 or if you just need the variables of a certain level 1 directories
 
