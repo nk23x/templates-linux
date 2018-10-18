@@ -24,7 +24,7 @@ or if you just need the variables of a certain level 1 directories
 ```
  
 ## motivation
-- ansible is the worst piece of crap i ran into in recent years
+- ansible is the worst piece of crap i can imagine
 - chef sucks
 - terraform is for infrastructure 
 
