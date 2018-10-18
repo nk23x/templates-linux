@@ -1,0 +1,59 @@
+## $HOME/.bash_login 
+
+#### don't forget to create a link to this file called ~/.bash_profile
+#### see also: bash.1
+
+export MANPATH="/usr/local/man:/usr/man:/usr/local/share/man:/usr/X11/man"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/bin:/usr/local/bin:/usr/local/sbin:/home/noke/scripts:/usr/X11R6/bin:/usr/lib64/java/bin:/usr/lib64/openjdk/bin"
+
+export HOME="$(pwd)"
+
+export LS_OPTIONS=' --color=none -F -b -T 0';
+
+export HOSTNAME=`hostname`
+
+export HISTCONTROL=ignoredups    
+export ignoreeof=10
+export HISTSIZE=90000
+
+export TERMINFO="/usr/share/terminfo"
+
+export PAGER="less"			
+export LESSCHARSET=latin1
+export LESS="-CIMQs"
+export LESSOPEN="|lesspipe.sh %s"
+
+export EDITOR="vim"			
+export VISUAL="vim"
+
+# export LC_ALL=de_DE
+# export LC_CTYPE=de_DE
+# export LANG=de_DE
+export LC_ALL=en_US
+export LANG=en_US
+export LC_CTYPE=en_US
+
+ulimit -c 0   
+umask 022
+
+if [ "$TERM" = "" -o "$TERM" = "unknown" ]; then
+  export TERM=linux
+elif [ $TERM = "xterm" ]; then 
+  export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+fi 
+export PS1="\t.\u.\h.\W:"
+export PS2='> '
+
+#### load additional startup screipts
+for STARTSCRIPT in $(ls $HOME/.bash_login_*); do source $STARTSCRIPT; done
+
+export LADSPA_PATH=$LADSPA_PATH:/usr/lib/ladspa
+
+export PATH="$HOME/perl5/bin${PATH+:}${PATH}"; 
+export PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; 
+export PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}";
+export PERL_MB_OPT="--install_base \"$HOME/perl5\"";
+export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; 
+
+export JAVA_HOME="/usr/lib64/openjdk"
+

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+alias ll="ls -als"
+alias p="ps waux"
+alias n="netstat -tupn"
+alias f="df -aTh"
+alias q="setterm --clear all;exit" 		
+
+alias _su="sudo /bin/bash"
+
+alias utgz="tar xvzf"
+alias utbz="tar xvjf"
+alias l="/usr/bin/less"
+
+alias stxx=" (startx &) && clear && exit"
+alias oclk="oclock -geometry 80x80 -transparent -minute black -hour black -jewel black &"
+alias suspnd="(xlock &) && sleep 2s && sudo $(which pm-suspend)"
+
+alias mc="mc -ba"
+
+alias muttx='echo -ne "\033]2;"mutt - `whoami`@`hostname` - cli"\007"; export TERM=vt100; /usr/local/bin/mutt'
+
+alias mmm="alsamixer"
+alias spkr="amixer cset name='Speaker Playback Switch' toggle"
+alias lamek6="lame --replaygain-accurate -q2 -b 160 --verbose"
+
+alias hwlst="inxi -FdflmpuxszBnxxx -xt c -xt m -c 0 | less"

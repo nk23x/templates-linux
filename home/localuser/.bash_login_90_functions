@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#### calculator
+function calc { echo "${1}"|bc -l; }
+
+#### kill process
+function _kill { pidof "${1}"|xargs kill -9; }
+
+#### file backup
+function _backup() { test -e $1 && xz -z -9 -c $1 > $1--backup-`date +%Y%m%d%H%M%S`.xz || echo $1: No such file or directory;  }
+
+#### date
+function _now() { date +' %A (%a)   %d.%m.%Y   Woche %V  Tag %j   %H:%M:%S %Z (%z)'; }
+
+#### gen password of 16 chars, display password, first 8 chars and checksums
+function _passwd() { echo "$(< /dev/urandom tr -dc a-k-m-z-A-H-X-Z-2-9.+- | head -c${1:-16};)"; }
+
+#### text to speech
+function _t2s() { wget -q -U Mozilla -O $(tr ' ' _ <<< "$1"| cut -b 1-15).mp3 "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=$(tr ' ' + <<< "$1")"; }
+
+#### laptop battery state
+function batti() { if [[ $(grep 'remaining capacity' /proc/acpi/battery/*/state | perl -pe 's/.*:\s+ ([0-9]{3,4}).*/$1/g;') -gt $(grep 'capacity warning' /proc/acpi/battery/*/info | perl -pe 's/.*: ([0-9]{3}).*/$1/g;') ]]; then echo "ok - $(grep 'remaining capacity' /proc/acpi/battery/*/state | perl -pe 's/.*:\s+ ([0-9]{3,4}).*/$1/g;') remaining"; else echo "WARNING! LOW BATTERY"; fi }
+
+#### halt
+function pof() { echo -e "\n\n *** halting ***\n\n" && (export POF_WAIT_PNAMES="lftp wget curl make slackpkg dd cp rsync"; for PNAME in $POF_WAIT_PNAMES; do if [[ $(pgrep $PNAME) ]]; then echo -e "\n $PNAME is still running:\n *** waiting 10s for manual interrupt ***\n"; sleep 10s; fi; done) && sleep 10s && sudo /sbin/halt -h -i ; }
+
+#### reboot
+function prb() { echo -e "\n\n *** rebooting ***\n\n" && (export POF_WAIT_PNAMES="lftp wget curl make slackpkg dd cp rsync"; for PNAME in $POF_WAIT_PNAMES; do if [[ $(pgrep $PNAME) ]]; then echo -e "\n $PNAME is still running:\n *** waiting 10s for manual interrupt ***\n"; sleep 10s; fi; done) && sleep 10s && sudo /sbin/reboot -h -i ; }
+

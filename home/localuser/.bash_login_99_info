@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## on login: ip
+echo -e "\n   NET:\n   $(ip a s | grep 'inet ' | perl -pe 's/^.*inet ([0-9.]{4,16})\/.*/$1/g;' | grep -v '127.0.0.1')\n"
+
+## on login: alsa
+echo -e "   ALSA SOUNDCARD:\n   $(grep -A 1 '\[' /proc/asound/cards | perl -pe 's/^ ([0-9]{1}) \[.*/$1/g;s/^\s++(.*)/$1/g;' | perl -pe 's/([0-9])\n/$1 /g;')\n"
+
