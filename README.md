@@ -4,14 +4,26 @@ templates of linux configuration files
 ## description
 work in progress and considered the base of a simple deployment (bash-)script for configuring (existing) linux environments
 
-the future deployment bash script will just copy the files to the system and replace certain strings - like "#<-- TEMPLATE_VARIABLE_NAME -->#" - with values from an file that just contains NAME="VALUE" pairs.
+the future deployment bash script will just copy the files to the system and replace certain strings with values from an ini file.
 
 the initial ini file can be generated like 
 
-  '''./make_ini.sh > ini'''
+ ./make_ini.sh > ini
 
 or if you just need the variables of a certain level 1 directories
 
-  ./make_ini.sh etc usr > ini
+ ./make_ini.sh etc usr > ini
   
+## sytax
+### template variable names
 
+ #<-- TEMPLATE_VARIABLE_NAME --># 
+ 
+### ini file format
+ 
+ TEMPLATE_VARIABLE_NAME="VALUE"
+ 
+## motivation
+* chef sucks
+* ansible is the worst piece of crap i ran into in recent years
+* terraform is for infrastructure
