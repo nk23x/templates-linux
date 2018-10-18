@@ -1,4 +1,4 @@
 #!/bin/bash
-export http_proxy="http://[IP:PORT]"
+export http_proxy="http://#<-- HTTP_PROXY_IP-ADDRESS -->#:#<-- HTTP_PROXY_PORT -->#"
 export https_proxy=$http_proxy
-export no_proxy="localhost,127.0.0.1,[NETWORK/MASK]"
+export no_proxy="localhost,127.0.0.1,#<-- HTTP_PROXY_EXCLUDES -->#"

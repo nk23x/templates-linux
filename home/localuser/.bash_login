@@ -23,15 +23,15 @@ export LESSCHARSET=latin1
 export LESS="-CIMQs"
 export LESSOPEN="|lesspipe.sh %s"
 
-export EDITOR="vim"			
-export VISUAL="vim"
+export EDITOR="#<-- EDITOR -->#"			
+export VISUAL="$EDITOR"
 
 # export LC_ALL=de_DE
 # export LC_CTYPE=de_DE
 # export LANG=de_DE
-export LC_ALL=en_US
-export LANG=en_US
-export LC_CTYPE=en_US
+export LC_ALL="#<-- LANGUAGE -->#"
+export LANG="$LC_ALL"
+export LC_CTYPE="$LC_ALL"
 
 ulimit -c 0   
 umask 022
